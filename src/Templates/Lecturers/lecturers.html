@@ -1,0 +1,42 @@
+<template name="lecturersForm">
+    <div class="container pull-left">
+        {{#autoForm collection="lecturers" id="insertLecturerForm" type="insert"}}
+            <legend>Добавить преподавателя:</legend>
+            <fieldset>
+                {{> afQuickField name='fio' }}
+                {{> afQuickField name='chair' options=chairs}}
+                {{> afFormGroup name='subjects' options=subjects}}
+            </fieldset>
+            <button type="submit" class="btn btn-primary">
+                <i class="glyphicon glyphicon-ok"></i> Добавить
+            </button>
+        {{/autoForm}}
+    </div>
+</template>
+
+
+<template name="listLecturers">
+    <h2>Преподаватели:</h2>
+    <div class="container">
+        <table class="table table-striped table-bordered table-hover" id='lecturers'>
+            <thead>
+                <td>ФИО</td>
+                <td>Кафедра</td>
+                <td>Предметы</td>
+            </thead>
+            <tbody>
+                {{#each lecturers}}
+                <tr>
+                    <td>{{fio}}</td>
+                    <td>{{chair}}</td>
+                    <td>
+                        {{subjects}}
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+
+    {{> lecturersForm }}
+</template>

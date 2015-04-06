@@ -1,0 +1,44 @@
+<template name='nav'>
+  <nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        {{> navBrand}}
+      </div>
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          {{> navItems}}
+        </ul>
+        {{> loginIfNeed }}
+      </div>
+    </div>
+  </nav>
+
+</template>
+
+<template name="navBrand">
+    <a class="navbar-brand" href="{{ pathFor 'home' }}">Главная</a>
+</template>
+
+<template name='navItems'>
+    <li class="{{ activeIfTemplateIs 'lecturersList' }}">
+        <a href="{{ pathFor 'lecturers'}}">Преподаватели</a>
+    </li>
+    <li class="{{ activeIfTemplateIs 'chairsList' }}">
+        <a href="{{ pathFor 'chairs'}}">Кафедры</a>
+    </li>
+    <li class="{{ activeIfTemplateIs 'subjectsList' }}">
+        <a href="{{ pathFor 'subjects'}}">Предметы</a>
+    </li>
+    <li class="{{ activeIfTemplateIs 'departamentsList' }}">
+        <a href="{{ pathFor 'departaments'}}">Факультеты</a>
+    </li>
+    <li class="{{ activeIfTemplateIs 'roomsList' }}">
+        <a href="{{ pathFor 'rooms'}}">Аудитории</a>
+    </li>
+</template>
