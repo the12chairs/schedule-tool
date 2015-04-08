@@ -94,7 +94,7 @@ Schemas.Schedule = new SimpleSchema({
     pair: {
         type: Number,
         label: "Номер пары",
-        min:1
+        min:1,
         max:6
     },
     subject: {
