@@ -14,7 +14,6 @@
         <ul class="nav navbar-nav">
           {{> navItems}}
         </ul>
-        {{> loginIfNeed }}
       </div>
     </div>
   </nav>
@@ -26,6 +25,9 @@
 </template>
 
 <template name='navItems'>
+    <li class="{{ activeIfTemplateIs 'schedulesList' }}">
+        <a href="{{ pathFor 'schedule'}}">Расписание</a>
+    </li>
     <li class="{{ activeIfTemplateIs 'lecturersList' }}">
         <a href="{{ pathFor 'lecturers'}}">Преподаватели</a>
     </li>
@@ -40,5 +42,11 @@
     </li>
     <li class="{{ activeIfTemplateIs 'roomsList' }}">
         <a href="{{ pathFor 'rooms'}}">Аудитории</a>
+    </li>
+    <li class="{{ activeIfTemplateIs 'specialitiesList' }}">
+        <a href="{{ pathFor 'specialities'}}">Специальности</a>
+    </li>
+    <li class="{{ activeIfTemplateIs 'groupsList' }}">
+        <a href="{{ pathFor 'groups'}}">Группы</a>
     </li>
 </template>

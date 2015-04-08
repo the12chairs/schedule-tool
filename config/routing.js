@@ -7,6 +7,10 @@ Router.map(function () {
         path: '/',
         template: 'home'
     }),
+    this.route('schedule', {
+        path: '/schedule',
+        template: 'listSchedules'
+    }),
     this.route('chairs', {
         path: '/chairs',
         template: 'listChairs'
@@ -26,6 +30,14 @@ Router.map(function () {
     this.route('rooms', {
         path: '/rooms',
         template: 'listRooms'
+    }),
+    this.route('specialities', {
+        path: '/specialities',
+        template: 'listSpecialities'
+    }),
+    this.route('groups', {
+        path: '/groups',
+        template: 'listGroups'
     })
 })
 

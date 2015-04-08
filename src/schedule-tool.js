@@ -39,6 +39,20 @@ if (Meteor.isClient) {
         }
     })
 
+
+    Template.groupsForm.helpers({
+        codes: function() {
+            var codes = []
+            var specialitiesList = specialities.find()
+            specialitiesList.forEach(function(e) {
+                codes.push({label: e.code+':'+e.title,  value: e.code})
+            })
+
+            return codes
+        }
+    })
+
+
     Template.listRooms.helpers({
         rooms: rooms.find()
     })
@@ -49,6 +63,18 @@ if (Meteor.isClient) {
 
     Template.listDepartaments.helpers({
         departaments: departaments.find()
+    })
+
+    Template.listSpecialities.helpers({
+        specialities: specialities.find()
+    })
+
+    Template.listGroups.helpers({
+        groups: groups.find()
+    })
+
+    Template.listSchedules.helpers({
+        schedule: schedules.find()
     })
 
     Accounts.ui.config({
@@ -66,4 +92,5 @@ if (Meteor.isServer) {
           profile: {}
       })*/
   })
+
 }

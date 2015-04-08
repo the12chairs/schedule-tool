@@ -4,7 +4,7 @@
             <legend>Добавить преподавателя:</legend>
             <fieldset>
                 {{> afQuickField name='fio' }}
-                {{> afQuickField name='chair' options=chairs}}
+                {{> afQuickField name='chair.title' options=chairs}}
                 {{> afFormGroup name='subjects' options=subjects}}
             </fieldset>
             <button type="submit" class="btn btn-primary">
@@ -28,7 +28,7 @@
                 {{#each lecturers}}
                 <tr>
                     <td>{{fio}}</td>
-                    <td>{{chair}}</td>
+                    <td>{{chair.title}}</td>
                     <td>
                         {{subjects}}
                     </td>
