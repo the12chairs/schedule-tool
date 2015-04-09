@@ -1,19 +1,51 @@
 <template name="lecturersForm">
     <div class="container pull-left">
-        {{#autoForm collection="lecturers" id="insertLecturerForm" type="insert"}}
+        <form>
             <legend>Добавить преподавателя:</legend>
-            <fieldset>
-                {{> afQuickField name='fio' }}
-                {{> afQuickField name='chair' options=chairs}}
-                {{> afFormGroup name='subjects' options=subjects}}
-            </fieldset>
+                <fieldset>
+                    <div class="form-group">
+                        <label for='fio'>ФИО</label>
+                        <input class="form-control" type='text' name='fio' required />
+                    </div>
+                    <div class="form-group">
+                        <label for='chair'>Кафедра</label>
+                        <select class="form-control" name='chair' required>
+                            {{#each chairsLc}}
+                            <option value="{{value}}">{{label}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for='subjects'>Предметы</label>
+                        <select class="form-control" name='subjects' multiple required>
+                            {{#each subjectsLc}}
+                            <option value="{{value}}">{{label}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                </fieldset>
             <button type="submit" class="btn btn-primary">
                 <i class="glyphicon glyphicon-ok"></i> Добавить
             </button>
-        {{/autoForm}}
+        </form>
     </div>
 </template>
 
+<template name="lecturersFormDepricated">
+    <div class="container pull-left">
+        {{#autoForm collection="lecturers" id="insertLecturerForm" type="insert"}}
+        <legend>Добавить преподавателя:</legend>
+        <fieldset>
+            {{> afQuickField name='fio' }}
+            {{> afQuickField name='chair' options=chairs}}
+            {{> afFormGroup name='subjects' options=subjects}}
+        </fieldset>
+        <button type="submit" class="btn btn-primary">
+            <i class="glyphicon glyphicon-ok"></i> Добавить
+        </button>
+        {{/autoForm}}
+    </div>
+</template>
 
 <template name="listLecturers">
     <h2>Преподаватели:</h2>
@@ -30,7 +62,6 @@
                     <td>{{fio}}</td>
                     <td>{{chair.title}}</td>
                     <td>
-                        {{subjects}}
                     </td>
                 </tr>
                 {{/each}}

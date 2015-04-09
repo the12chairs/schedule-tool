@@ -1,6 +1,5 @@
 
 if (Meteor.isClient) {
-
     Template.navItems.helpers({
       activeIfTemplateIs: function (template) {
         var currentRoute = Router.current()
@@ -16,42 +15,6 @@ if (Meteor.isClient) {
     Template.listLecturers.helpers({
         lecturers: lecturers.find()
     })
-
-    Template.lecturersForm.helpers({
-        subjects: function() {
-            var titles = []
-            var subjectsList =  subjects.find()
-            subjectsList.forEach(function(e) {
-                titles.push({label: e.title, value: e._id})
-            })
-
-            return titles
-        },
-
-        chairs: function() {
-            var titles = []
-            var chairsList =  chairs.find()
-            chairsList.forEach(function(e) {
-                titles.push({label: e.title, value: e.title})
-            })
-
-            return titles
-        }
-    })
-
-
-    Template.groupsForm.helpers({
-        codes: function() {
-            var codes = []
-            var specialitiesList = specialities.find()
-            specialitiesList.forEach(function(e) {
-                codes.push({label: e.code+':'+e.title,  value: e.code})
-            })
-
-            return codes
-        }
-    })
-
 
     Template.listRooms.helpers({
         rooms: rooms.find()
@@ -77,6 +40,41 @@ if (Meteor.isClient) {
         schedule: schedules.find()
     })
 
+
+    Template.lecturersForm.helpers({
+        subjectsLc: function() {
+            var titles = []
+            var subjectsList =  subjects.find()
+            subjectsList.forEach(function(e) {
+                titles.push({label: e.title, value: e._id})
+            })
+
+            return titles
+        },
+
+        chairsLc: function() {
+            var titles = []
+            var chairsList =  chairs.find()
+            chairsList.forEach(function(e) {
+                titles.push({label: e.title, value: e._id})
+            })
+
+            return titles
+        },
+    })
+
+
+    Template.groupsForm.helpers({
+        codes: function() {
+            var codes = []
+            var specialitiesList = specialities.find()
+            specialitiesList.forEach(function(e) {
+                codes.push({label: e.code+':'+e.title,  value: e.code})
+            })
+
+            return codes
+        }
+    })
 
     Template.schedulesForm.helpers({
         subjectsSh: function() {
@@ -116,12 +114,11 @@ if (Meteor.isClient) {
 
     Template.lecturersForm.events({
         'submit form': function(event){
-
             event.preventDefault()
+
             var fioQ = event.target.fio.value
             var chairQ = chairs.find({ _id: event.target.chair.value}).fetch()[0]
-
-            var subjectsQ = event.target.subjects.value
+            var subjectsQ = subjects.find({ _id: event.target.subjects.value}).fetch()
 
             lecturers.insert({fio: fioQ, subjects: subjectsQ, chair: chairQ})
 
@@ -132,6 +129,7 @@ if (Meteor.isClient) {
     Template.schedulesForm.events({
         'submit form': function(event){
             event.preventDefault()
+
             var pairQ = event.target.pair.value
             var subjQ = subjects.find({ _id: event.target.subject.value}).fetch()[0]
             var roomQ = rooms.find({_id: event.target.room.value}).fetch()[0]
@@ -153,7 +151,6 @@ if (Meteor.isClient) {
 
 
 if (Meteor.isServer) {
-
 
   Meteor.startup(function () {
       /*
