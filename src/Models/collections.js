@@ -99,19 +99,19 @@ Schemas.Schedule = new SimpleSchema({
     },
     subject: {
         type: Schemas.Subject,
-        label: "Предмет"
+        label: "Предмет",
     },
     room: {
         type: Schemas.Room,
-        label: "Аудитория"
+        label: "Аудитория",
     },
     lecturer: {
         type: Schemas.Lecturer,
-        label: "Преподаватель"
+        label: "Преподаватель",
     },
     group: {
         type: Schemas.Group,
-        label: "Группа"
+        label: "Группа",
     }
 })
 
