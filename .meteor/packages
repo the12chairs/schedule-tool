@@ -15,4 +15,6 @@ aldeed:autoform
 aldeed:collection2
 iron:router
 accounts-password
-accounts-ui
+accounts-ui-unstyled
+accounts-base
+fortawesome:fontawesome
