@@ -1,0 +1,9 @@
+.panel-info > .panel-heading {
+    background-color: #eee;
+    border-color: #aaa;
+    color: #777
+}
+
+.panel-info {
+    border-color: #e7e7e7;
+}
