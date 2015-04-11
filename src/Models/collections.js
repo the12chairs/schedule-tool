@@ -44,7 +44,7 @@ Schemas.Group = new SimpleSchema({
     },
     specialityCode: {
         type: Number,
-        label: "Код специальности",
+        label: "Специальность"
     },
 })
 Schemas.Lecturer = new SimpleSchema({
@@ -59,14 +59,14 @@ Schemas.Lecturer = new SimpleSchema({
     },
     chair: {
         type: Schemas.Chair,
-        label: 'Кафедра',
+        label: 'Кафедра'
     }
 
 })
 Schemas.Room = new SimpleSchema({
     number: {
         type: Number,
-        label: "Номер",
+        label: "Номер"
     },
     building: {
         type: String,
@@ -99,19 +99,19 @@ Schemas.Schedule = new SimpleSchema({
     },
     subject: {
         type: Schemas.Subject,
-        label: "Предмет",
+        label: "Предмет"
     },
     room: {
         type: Schemas.Room,
-        label: "Аудитория",
+        label: "Аудитория"
     },
     lecturer: {
         type: Schemas.Lecturer,
-        label: "Преподаватель",
+        label: "Преподаватель"
     },
     group: {
         type: Schemas.Group,
-        label: "Группа",
+        label: "Группа"
     }
 })
 

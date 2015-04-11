@@ -1,5 +1,8 @@
 
 if (Meteor.isClient) {
+
+    SimpleSchema.debug
+
     Template.navItems.helpers({
       activeIfTemplateIs: function (template) {
         var currentRoute = Router.current()
@@ -44,23 +47,22 @@ if (Meteor.isClient) {
     Template.lecturersForm.helpers({
         subjectsLc: function() {
             var titles = []
-            var subjectsList =  subjects.find()
+            var subjectsList = subjects.find()
             subjectsList.forEach(function(e) {
-                titles.push({label: e.title, value: e._id})
+                titles.push({label: e.title, value: e.title})
             })
 
             return titles
         },
-
         chairsLc: function() {
             var titles = []
-            var chairsList =  chairs.find()
+            var chairsList = chairs.find()
             chairsList.forEach(function(e) {
-                titles.push({label: e.title, value: e._id})
+                titles.push({label: e.title, value: e.title})
             })
 
-            return titles
-        },
+            return titles//chairs.find().fetch()
+        }
     })
 
 
@@ -111,7 +113,7 @@ if (Meteor.isClient) {
         }
     })
 
-
+/*
     Template.lecturersForm.events({
         'submit form': function(event){
             event.preventDefault()
@@ -125,7 +127,7 @@ if (Meteor.isClient) {
             return false
         }
     })
-
+*/
     Template.schedulesForm.events({
         'submit form': function(event){
             event.preventDefault()
@@ -142,6 +144,40 @@ if (Meteor.isClient) {
             return false
         }
     })
+
+    Template.signIn.events({
+
+        'submit form' : function(event){
+            e.preventDefault();
+            // retrieve the input field values
+            var email = event.target.username.value
+            var password = event.target.password.value
+            console.log('handle login form')
+
+
+            Meteor.loginWithPassword(email, password, function(err){
+                if (err){
+                    console.log('errorr')
+                } else {
+                    console.log('success')
+                }
+                return false
+            })
+
+            return false
+        }
+    })
+
+    AutoForm.hooks({
+      groupForm: {
+        onSubmit: function (insertDoc, updateDoc, currentDoc) {
+            var s = specialities.find({ _id: insertDoc.speciality })
+
+            this.done();
+            return false;
+        }
+      }
+    });
 
     Accounts.ui.config({
         passwordSignupFields: "USERNAME_ONLY"

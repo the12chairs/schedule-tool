@@ -3,11 +3,9 @@
         {{#autoForm collection="groups" id="insertGroupForm" type="insert"}}
         <legend>Добавить группу:</legend>
         <fieldset>
-
             {{> afQuickField name='name' }}
             {{> afQuickField name='course'}}
             {{> afQuickField name='specialityCode' options=codes}}
-
         </fieldset>
         <button type="submit" class="btn btn-primary">
             <i class="glyphicon glyphicon-ok"></i> Добавить
@@ -33,9 +31,7 @@
                 <tr>
                     <td>{{name}}</td>
                     <td>{{course}}</td>
-                    <td>
-                        {{specialityCode}}
-                    </td>
+                    <td>{{specialityCode}}</td>
                 </tr>
                 {{/each}}
             </tbody>

@@ -1,5 +1,21 @@
 <template name="lecturersForm">
     <div class="container pull-left">
+        {{#autoForm collection="lecturers" id="insertLecturerForm" type="insert"}}
+            <legend>Добавить преподавателя:</legend>
+            <fieldset>
+                {{> afQuickField name='fio'}}
+                {{> afQuickField name='chair.title' options=chairsLc label="Кафедра"}}
+                {{> afQuickField name='subjects' options=subjectsLc}}
+            </fieldset>
+            <button type="submit" class="btn btn-primary">
+                <i class="glyphicon glyphicon-ok"></i> Добавить
+            </button>
+        {{/autoForm}}
+    </div>
+</template>
+
+<template name="lecturersFormNative">
+    <div class="container pull-left">
         <form>
             <legend>Добавить преподавателя:</legend>
                 <fieldset>
@@ -48,6 +64,7 @@
                     <td>{{fio}}</td>
                     <td>{{chair.title}}</td>
                     <td>
+                        {{subjects}}
                     </td>
                 </tr>
                 {{/each}}
