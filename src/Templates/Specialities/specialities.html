@@ -22,6 +22,7 @@
                 <tr>
                     <th>Код</th>
                     <th>Название</th>
+                    <th>Действия</th>
                 </tr>
             </thead>
             <tbody>
@@ -29,6 +30,7 @@
                 <tr>
                     <td>{{code}}</td>
                     <td>{{title}}</td>
+                    <td>{{#quickRemoveButton collection="specialities" _id=this._id}}Удалить{{/quickRemoveButton}} </td>
                 </tr>
                 {{/each}}
             </tbody>

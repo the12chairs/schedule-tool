@@ -21,6 +21,7 @@
                 <tr>
                     <th>Название факультета</th>
                     <th>Телефон деканата</th>
+                    <th>Действия</th>
                 </tr>
             </thead>
             <tbody>
@@ -28,6 +29,7 @@
                 <tr>
                     <td>{{title}}</td>
                     <td>{{phone}}</td>
+                    <td>{{#quickRemoveButton collection="departaments" _id=this._id}}Удалить{{/quickRemoveButton}}</td>
                 </tr>
                 {{/each}}
             </tbody>

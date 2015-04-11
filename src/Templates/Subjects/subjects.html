@@ -5,12 +5,14 @@
             <thead>
                 <tr>
                     <th>Название предмета</th>
+                    <th>Действия</th>
                 </tr>
             </thead>
             <tbody>
                 {{#each subjects}}
                 <tr>
                     <td>{{title}}</td>
+                    <td>{{#quickRemoveButton collection="subjects" _id=this._id}}Удалить{{/quickRemoveButton}} </td>
                 </tr>
                 {{/each}}
             </tbody>

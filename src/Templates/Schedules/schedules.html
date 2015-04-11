@@ -59,6 +59,7 @@
                     <th>Аудитория</th>
                     <th>Преподаватель</th>
                     <th>Группа</th>
+                    <th>Действия</th>
                 </tr>
             </thead>
             <tbody>
@@ -79,6 +80,7 @@
                     <td>
                         {{group.name}}
                     </td>
+                    <td>{{#quickRemoveButton collection="schedules" _id=this._id}}Удалить{{/quickRemoveButton}} </td>
                 </tr>
                 {{/each}}
             </tbody>

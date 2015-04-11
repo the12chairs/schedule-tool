@@ -19,14 +19,17 @@
             <thead>
                 <tr>
                     <th>Название кафедры</th>
+                    <th>Действия</th>
                 </tr>
             </thead>
             <tbody>
                 {{#each chairs}}
                 <tr>
                     <td>{{title}}</td>
+                    <td>{{#quickRemoveButton collection="chairs" _id=this._id}}Удалить{{/quickRemoveButton}} </td>
                 </tr>
                 {{/each}}
+
             </tbody>
         </table>
     </div>

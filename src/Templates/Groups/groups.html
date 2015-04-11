@@ -24,6 +24,7 @@
                     <th>Название</th>
                     <th>Курс</th>
                     <th>Специальность</th>
+                    <th>Действия</th>
                 </tr>
             </thead>
             <tbody>
@@ -32,6 +33,7 @@
                     <td>{{name}}</td>
                     <td>{{course}}</td>
                     <td>{{specialityCode}}</td>
+                    <td>{{#quickRemoveButton collection="groups" _id=this._id}}Удалить{{/quickRemoveButton}} </td>
                 </tr>
                 {{/each}}
             </tbody>
