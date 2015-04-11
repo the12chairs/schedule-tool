@@ -115,22 +115,23 @@ if (Meteor.isClient) {
 
     Template.signIn.events({
 
-        'submit form' : function(event){
-            e.preventDefault();
-            // retrieve the input field values
-            var email = event.target.username.value
-            var password = event.target.password.value
-            console.log('handle login form')
-
-
-            Meteor.loginWithPassword(email, password, function(err){
-                if (err){
-                    console.log('errorr')
+        'submit #login-form' : function(event, template){
+            // 1. Collect the username and password from the form
+            var username = template.find('#login-username').value
+            var password = template.find('#login-password').value
+            // 2. Attempt to login.
+            Meteor.loginWithPassword(username, password, function(error) {
+                // 3. Handle the response
+                if (Meteor.user()) {
+                    // Redirect the user to where they're loggin into. Here, Router.go uses
+                    // the iron:router package.
+                    Router.go('schedule')
                 } else {
-                    console.log('success')
+                    var message = "Невозможно войти в систему: <strong>" + error.reason + "</strong>";
+                    template.find('#form-messages').html(message);
                 }
-                return false
-            })
+                return
+            });
 
             return false
         }
@@ -170,13 +171,6 @@ if (Meteor.isClient) {
 if (Meteor.isServer) {
 
   Meteor.startup(function () {
-      /*
-      Accounts.createUser({
-          username: 'admin',
-          email: 'admin@admin.com',
-          password: 'admin',
-          profile: {}
-      })*/
   })
 
 }

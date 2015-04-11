@@ -14,10 +14,20 @@
         <ul class="nav navbar-nav">
           {{> navItems}}
         </ul>
+        {{#if currentUser}}
+            {{>userBadge}}
+        {{/if}}
       </div>
     </div>
   </nav>
 
+</template>
+
+<template name="userBadge">
+    <div class="content pull-right">
+        <p>{{currentUser.username}}</p>
+        <a href="">Выйти</a>
+    </div>
 </template>
 
 <template name="navBrand">
