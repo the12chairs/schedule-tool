@@ -14,6 +14,7 @@
 </template>
 
 <template name="listDepartaments">
+    {{> autoformModals}}
     <h2>Факультеты:</h2>
     <div class="container pull-left">
         <table class="table table-striped table-bordered table-hover" id='chairs'>
@@ -21,7 +22,7 @@
                 <tr>
                     <th>Название факультета</th>
                     <th>Телефон деканата</th>
-                    <th>Действия</th>
+                    <th colspan="2">Действия</th>
                 </tr>
             </thead>
             <tbody>
@@ -29,7 +30,29 @@
                 <tr>
                     <td>{{title}}</td>
                     <td>{{phone}}</td>
-                    <td>{{#quickRemoveButton collection="departaments" _id=this._id}}Удалить{{/quickRemoveButton}}</td>
+                    <td>{{#quickRemoveButton
+                            collection="departaments"
+                            _id=this._id
+                            class="btn btn-danger"
+                        }}
+                            <i class="fa fa-md fa-remove"></i>
+                            Удалить
+                        {{/quickRemoveButton}}</td>
+                    <td>
+                        {{#afModal
+                            class="btn btn-primary"
+                            collection="departaments"
+                            id="updateDepartamentForm"
+                            operation="update"
+                            doc=_id
+                            buttonContent="Сохранить"
+                            title="Редактировать запись"
+                            buttonClasses="btn btn-success"
+                        }}
+                            <i class="fa fa-md fa-edit"></i>
+                            Редактировать
+                        {{/afModal}}
+                    </td>
                 </tr>
                 {{/each}}
             </tbody>

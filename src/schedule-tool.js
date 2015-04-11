@@ -61,7 +61,7 @@ if (Meteor.isClient) {
                 titles.push({label: e.title, value: e.title})
             })
 
-            return titles//chairs.find().fetch()
+            return titles
         }
     })
 
@@ -113,38 +113,6 @@ if (Meteor.isClient) {
         }
     })
 
-/*
-    Template.lecturersForm.events({
-        'submit form': function(event){
-            event.preventDefault()
-
-            var fioQ = event.target.fio.value
-            var chairQ = chairs.find({ _id: event.target.chair.value}).fetch()[0]
-            var subjectsQ = subjects.find({ _id: event.target.subjects.value}).fetch()
-
-            lecturers.insert({fio: fioQ, subjects: subjectsQ, chair: chairQ})
-
-            return false
-        }
-    })
-*/
-    Template.schedulesForm.events({
-        'submit form': function(event){
-            event.preventDefault()
-
-            var pairQ = event.target.pair.value
-            var subjQ = subjects.find({ _id: event.target.subject.value}).fetch()[0]
-            var roomQ = rooms.find({_id: event.target.room.value}).fetch()[0]
-            var lecturerQ = lecturers.find({_id: event.target.lecturer.value}).fetch()[0]
-            var groupQ = groups.find({ _id: event.target.group.value}).fetch()[0]
-
-            schedules.insert({pair: pairQ, subject: subjQ, room: roomQ, lecturer: lecturerQ, group: groupQ})
-
-
-            return false
-        }
-    })
-
     Template.signIn.events({
 
         'submit form' : function(event){
@@ -169,15 +137,28 @@ if (Meteor.isClient) {
     })
 
     AutoForm.hooks({
-      groupForm: {
-        onSubmit: function (insertDoc, updateDoc, currentDoc) {
-            var s = specialities.find({ _id: insertDoc.speciality })
+        insertScheduleForm: {
+            formToDoc: function(doc){
+                doc.subject = subjects.find({_id: doc.subject.title}).fetch()[0]
+                doc.room = rooms.find({_id: doc.room.building}).fetch()[0]
+                doc.lecturer = lecturers.find({_id: doc.lecturer.fio}).fetch()[0]
+                doc.group = groups.find({_id: doc.group.name}).fetch()[0]
 
-            this.done();
-            return false;
+                return doc
+            }
+        },
+        updateScheduleForm: {
+            formToDoc: function(doc){
+                doc.subject = subjects.find({_id: doc.subject}).fetch()[0]
+                doc.room = rooms.find({_id: doc.room}).fetch()[0]
+                doc.lecturer = lecturers.find({_id: doc.lecturer}).fetch()[0]
+                doc.group = groups.find({_id: doc.group}).fetch()[0]
+
+                return doc
+
+            }
         }
-      }
-    });
+    })
 
     Accounts.ui.config({
         passwordSignupFields: "USERNAME_ONLY"

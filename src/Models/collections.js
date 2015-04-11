@@ -44,7 +44,18 @@ Schemas.Group = new SimpleSchema({
     },
     specialityCode: {
         type: Number,
-        label: "Специальность"
+        label: "Специальность",
+        autoform: {
+            options: function() {
+                var codes = []
+                var specialitiesList = specialities.find()
+                specialitiesList.forEach(function(e) {
+                    codes.push({label: e.code+':'+e.title,  value: e.code})
+                })
+
+                return codes
+            }
+        }
     },
 })
 Schemas.Lecturer = new SimpleSchema({
@@ -55,14 +66,50 @@ Schemas.Lecturer = new SimpleSchema({
     },
     subjects: {
         type: [Schemas.Subject],
-        label: 'Предметы'
+        label: 'Предметы',
+        autoform: {
+            options: function() {
+                var titles = []
+                var subjectsList = subjects.find()
+                subjectsList.forEach(function(e) {
+                    titles.push({label: e.title, value: e.title})
+                })
+                return titles
+            }
+        }
     },
     chair: {
         type: Schemas.Chair,
-        label: 'Кафедра'
-    }
+        label: 'Кафедра',
+        autoform: {
+            options: function() {
+                var titles = []
+                var chairsList = chairs.find()
+                chairsList.forEach(function(e) {
+                    titles.push({label: e.title, value: e.title})
+                })
 
+                return titles
+            }
+        }
+    },
+    'chair.title': {
+        type: String,
+        label: 'Кафедра',
+        autoform: {
+            options: function() {
+                var titles = []
+                var chairsList = chairs.find()
+                chairsList.forEach(function(e) {
+                    titles.push({label: e.title, value: e.title})
+                })
+
+                return titles
+            }
+        }
+    }
 })
+
 Schemas.Room = new SimpleSchema({
     number: {
         type: Number,
@@ -99,19 +146,115 @@ Schemas.Schedule = new SimpleSchema({
     },
     subject: {
         type: Schemas.Subject,
-        label: "Предмет"
+        label: "Предмет",
+        autoform: {
+            options: function() {
+                var subj = []
+                var subjList = subjects.find()
+                subjList.forEach(function(e) {
+                    subj.push({label: e.title,  value: e._id})
+                })
+                return subj
+            }
+        }
+    },
+    'subject.title': {
+        type: String,
+        label: "Предмет",
+        autoform: {
+            options: function() {
+                var subj = []
+                var subjList = subjects.find()
+                subjList.forEach(function(e) {
+                    subj.push({label: e.title,  value: e._id})
+                })
+                return subj
+            }
+        }
     },
     room: {
         type: Schemas.Room,
-        label: "Аудитория"
+        label: "Аудитория",
+        autoform: {
+            options: function() {
+                var roomsQ = []
+                var roomsList = rooms.find()
+                roomsList.forEach(function(e) {
+                    roomsQ.push({label: e.number+', '+e.building,  value: e._id})
+                })
+                return roomsQ
+            }
+        }
+    },
+    'room.building': {
+        type: String,
+        label: "Аудитория",
+        autoform: {
+            options: function() {
+                var roomsQ = []
+                var roomsList = rooms.find()
+                roomsList.forEach(function(e) {
+                    roomsQ.push({label: e.number+', '+e.building,  value: e._id})
+                })
+                return roomsQ
+            }
+        }
     },
     lecturer: {
         type: Schemas.Lecturer,
-        label: "Преподаватель"
+        label: "Преподаватель",
+        autoform: {
+            options: function () {
+                var leQ = []
+                var lecList = lecturers.find()
+                lecList.forEach(function(e) {
+                    leQ.push({label: e.fio,  value: e._id})
+                })
+                return leQ
+            }
+        }
+    },
+    'lecturer.fio': {
+        type: String,
+        label: "Преподаватель",
+        autoform: {
+            options: function() {
+                var leQ = []
+                var lecList = lecturers.find()
+                lecList.forEach(function(e) {
+                    leQ.push({label: e.fio,  value: e._id})
+                })
+                return leQ
+            }
+        }
     },
     group: {
         type: Schemas.Group,
-        label: "Группа"
+        label: "Группа",
+        autoform: {
+            options: function() {
+                var grQ = []
+                var grList = groups.find()
+                grList.forEach(function(e) {
+                    grQ.push({label: e.name+', Курс: '+e.course+', Специальность: '+e.specialityCode,  value: e._id})
+                })
+                return grQ
+            }
+        }
+    },
+    'group.name': {
+        type: String,
+        label: "Группа",
+        autoform: {
+            options: function() {
+                var grQ = []
+                var grList = groups.find()
+                grList.forEach(function(e) {
+                    grQ.push({label: e.name+', Курс: '+e.course+', Специальность: '+e.specialityCode,  value: e._id})
+                })
+                return grQ
+            }
+        }
     }
 })
 
