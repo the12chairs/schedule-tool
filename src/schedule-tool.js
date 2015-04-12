@@ -47,9 +47,52 @@ if (Meteor.isClient) {
     })
 
     Template.listSchedules.helpers({
-        schedule: schedules.find()
+        schedule: function () {
+            var group = Session.get('group');
+            var lecturer = Session.get('lecturer');
+
+            if(typeof(group) == "undefined") {
+                group = ''
+            }
+
+            if(typeof(lecturer) == "undefined"){
+                lecturer = ''
+            }
+
+            if(group != '' && lecturer != '') {
+                var s = schedules.find({'group.name': group, 'lecturer.fio': lecturer})
+            } else if(group != '' && lecturer == '') {
+                var s = schedules.find({'group.name': group}).fetch()
+            } else if(lecturer != '' && group == '') {
+                var s = schedules.find({'lecturer.fio': lecturer})
+            } else {
+                var s = schedules.find()
+            }
+
+            return s
+        }
     })
 
+    Template.filter.helpers({
+        prevLecturer: function () {
+            var lecturer = Session.get('lecturer');
+
+            if(typeof(lecturer) == "undefined") {
+                lecturer = '';
+            }
+
+            return lecturer;
+        },
+        prevGroup: function () {
+            var group = Session.get('group');
+
+            if(typeof(group) == "undefined") {
+                group = '';
+            }
+
+            return group;
+        }
+    })
 
     Template.lecturersForm.helpers({
         subjectsLc: function() {
@@ -71,7 +114,6 @@ if (Meteor.isClient) {
             return titles
         }
     })
-
 
     Template.groupsForm.helpers({
         codes: function() {
@@ -176,12 +218,31 @@ if (Meteor.isClient) {
         }
     })
 
+    Template.listSchedules.events({
+        'click #doFilter': function(event, template) {
+            event.preventDefault();
+            var group = template.find('#groupFilter').value;
+            var lecturer = template.find('#lecturerFilter').value;
+
+            Session.set('group', group);
+            Session.set('lecturer', lecturer);
+
+            return false;
+        },
+        'click #resetFilter': function(event, template) {
+            event.preventDefault();
+            Session.set('group', '');
+            Session.set('lecturer', '');
+
+            return false;
+        }
+    });
+
+
     Accounts.ui.config({
         passwordSignupFields: "USERNAME_ONLY"
     })
 }
-
-
 
 if (Meteor.isServer) {
 

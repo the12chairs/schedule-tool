@@ -1,3 +1,21 @@
+<template name="filter">
+    <div class="container">
+        <form class="form-inline">
+            <legend>Фильтровать:</legend>
+                <div class="form-group">
+                    <label for="lecturerFilter">Преподаватель</label>
+                    <input class="form-control" type="text" id="lecturerFilter" name="lecturerFilter" value="{{prevLecturer}}" placeholder="ФИО преподавателя...">
+                </div>
+                <div class="form-group">
+                    <label for="groupFilter">Группа</label>
+                    <input class="form-control" type="text" id="groupFilter" name="groupFilter" value="{{prevGroup}}" placeholder="Название группы...">
+                </div>
+            <button class="btn btn-primary" id="doFilter"><i class="glyphicon glyphicon-filter"></i>Фильтровать</button>
+            <button class="btn btn-danger" id="resetFilter"><i class="glyphicon glyphicon-remove"></i>Снять фильтр</button>
+        </form>
+    </div>
+</template>
+
 <template name="schedulesForm">
     <div class="container pull-left">
         {{#autoForm collection="schedules" id="insertScheduleForm" type="insert"}}
@@ -16,57 +34,8 @@
     </div>
 </template>
 
-<template name="schedulesFormNative">
-    <div class="container pull-left">
-        <form>
-            <legend>Добавить расписание:</legend>
-            <fieldset>
-                <div class="form-group">
-                    <label for='pair'>Номер пары</label>
-                    <input class="form-control" type='number' name='pair' required />
-                </div>
-                <div class="form-group">
-                    <label for='subject'>Предмет</label>
-                    <select class="form-control" name='subject'>
-                        {{#each subjectsSh}}
-                            <option value="{{value}}">{{label}}</option>
-                        {{/each}}
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for='room'>Аудитория</label>
-                    <select class="form-control" name='room'>
-                        {{#each roomsSh}}
-                        <option value="{{value}}">{{label}}</option>
-                        {{/each}}
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for='room'>Преподаватель</label>
-                    <select class="form-control" name='lecturer'>
-                        {{#each lecturersSh}}
-                        <option value="{{value}}">{{label}}</option>
-                        {{/each}}
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for='room'>Группа</label>
-                    <select class="form-control" name='group'>
-                        {{#each groupsSh}}
-                        <option value="{{value}}">{{label}}</option>
-                        {{/each}}
-                    </select>
-                </div>
-            </fieldset>
-            <button type="submit" class="btn btn-primary">
-                <i class="glyphicon glyphicon-ok"></i> Добавить
-            </button>
-        </form>
-    </div>
-</template>
-
-
 <template name="listSchedules">
+    {{> filter}}
     {{#if  isInRole 'redactor'}}
         {{> autoformModals}}
     {{/if }}
@@ -137,23 +106,4 @@
     {{#if  isInRole 'redactor'}}
         {{> schedulesForm }}
     {{/if}}
-</template>
-<template name="schedulesFormError">
-    <div class="container pull-left">
-        {{#autoForm collection="schedules" id="insertScheduleForm" validation='none'}}
-        <legend>Добавить расписание:</legend>
-        <fieldset>
-
-            {{> afQuickField name='pair' }}
-            {{> afFormGroup name='subject' options=subjectsSh }}
-            {{> afFormGroup name='room' options=roomsSh }}
-            {{> afFormGroup name='lecturer' options=lecturersSh }}
-            {{> afFormGroup name='group' options=groupsSh }}
-
-        </fieldset>
-        <button type="submit" class="btn btn-primary">
-            <i class="glyphicon glyphicon-ok"></i> Добавить
-        </button>
-        {{/autoForm}}
-    </div>
 </template>
