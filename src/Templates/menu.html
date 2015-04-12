@@ -25,8 +25,8 @@
 
 <template name="userBadge">
     <div class="content pull-right">
-        <p>{{currentUser.username}}</p>
-        <a href="">Выйти</a>
+        <span class="col-md-6">{{currentUser.username}}</span>
+        <span class="col-md-6"><a href="#" class="logout">Выйти</a></span>
     </div>
 </template>
 
@@ -38,25 +38,27 @@
     <li class="{{ activeIfTemplateIs 'schedulesList' }}">
         <a href="{{ pathFor 'schedule'}}">Расписание</a>
     </li>
-    <li class="{{ activeIfTemplateIs 'lecturersList' }}">
-        <a href="{{ pathFor 'lecturers'}}">Преподаватели</a>
-    </li>
-    <li class="{{ activeIfTemplateIs 'chairsList' }}">
-        <a href="{{ pathFor 'chairs'}}">Кафедры</a>
-    </li>
-    <li class="{{ activeIfTemplateIs 'subjectsList' }}">
-        <a href="{{ pathFor 'subjects'}}">Предметы</a>
-    </li>
-    <li class="{{ activeIfTemplateIs 'departamentsList' }}">
-        <a href="{{ pathFor 'departaments'}}">Факультеты</a>
-    </li>
-    <li class="{{ activeIfTemplateIs 'roomsList' }}">
-        <a href="{{ pathFor 'rooms'}}">Аудитории</a>
-    </li>
-    <li class="{{ activeIfTemplateIs 'specialitiesList' }}">
-        <a href="{{ pathFor 'specialities'}}">Специальности</a>
-    </li>
-    <li class="{{ activeIfTemplateIs 'groupsList' }}">
-        <a href="{{ pathFor 'groups'}}">Группы</a>
-    </li>
+    {{#if  isInRole 'redactor'}}
+        <li class="{{ activeIfTemplateIs 'lecturersList' }}">
+            <a href="{{ pathFor 'lecturers'}}">Преподаватели</a>
+        </li>
+        <li class="{{ activeIfTemplateIs 'chairsList' }}">
+            <a href="{{ pathFor 'chairs'}}">Кафедры</a>
+        </li>
+        <li class="{{ activeIfTemplateIs 'subjectsList' }}">
+            <a href="{{ pathFor 'subjects'}}">Предметы</a>
+        </li>
+        <li class="{{ activeIfTemplateIs 'departamentsList' }}">
+            <a href="{{ pathFor 'departaments'}}">Факультеты</a>
+        </li>
+        <li class="{{ activeIfTemplateIs 'roomsList' }}">
+            <a href="{{ pathFor 'rooms'}}">Аудитории</a>
+        </li>
+        <li class="{{ activeIfTemplateIs 'specialitiesList' }}">
+            <a href="{{ pathFor 'specialities'}}">Специальности</a>
+        </li>
+        <li class="{{ activeIfTemplateIs 'groupsList' }}">
+            <a href="{{ pathFor 'groups'}}">Группы</a>
+        </li>
+    {{/if}}
 </template>

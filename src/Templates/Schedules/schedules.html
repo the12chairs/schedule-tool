@@ -67,7 +67,9 @@
 
 
 <template name="listSchedules">
-    {{> autoformModals}}
+    {{#if  isInRole 'redactor'}}
+        {{> autoformModals}}
+    {{/if }}
     <h2>Расписание:</h2>
     <div class="container">
         <table class="table table-striped table-bordered table-hover" id='groups'>
@@ -78,7 +80,9 @@
                     <th>Аудитория</th>
                     <th>Преподаватель</th>
                     <th>Группа</th>
-                    <th colspan="2">Действия</th>
+                    {{#if  isInRole 'redactor'}}
+                        <th colspan="2">Действия</th>
+                    {{/if}}
                 </tr>
             </thead>
             <tbody>
@@ -99,37 +103,40 @@
                     <td>
                         {{group.name}}
                     </td>
-                    <td>{{#quickRemoveButton
-                            collection="schedules"
-                            _id=this._id
-                            class="btn btn-danger"
-                        }}
-                            <i class="fa fa-md fa-remove"></i>
-                            Удалить
-                        {{/quickRemoveButton}}</td>
-                    <td>
-                        {{#afModal
-                            class="btn btn-primary"
-                            collection="schedules"
-                            formId="updateScheduleForm"
-                            operation="update"
-                            labels="pair, subject.title, room.building, lecturer.fio, group.name"
-                            doc=_id
-                            buttonContent="Сохранить"
-                            title="Редактировать запись"
-                            buttonClasses="btn btn-success"
-                        }}
-                            <i class="fa fa-md fa-edit"></i>
-                            Редактировать
-                        {{/afModal}}
-                    </td>
+                    {{#if  isInRole 'redactor'}}
+                        <td>{{#quickRemoveButton
+                                collection="schedules"
+                                _id=this._id
+                                class="btn btn-danger"
+                            }}
+                                <i class="fa fa-md fa-remove"></i>
+                                Удалить
+                            {{/quickRemoveButton}}</td>
+                        <td>
+                            {{#afModal
+                                class="btn btn-primary"
+                                collection="schedules"
+                                formId="updateScheduleForm"
+                                operation="update"
+                                labels="pair, subject.title, room.building, lecturer.fio, group.name"
+                                doc=_id
+                                buttonContent="Сохранить"
+                                title="Редактировать запись"
+                                buttonClasses="btn btn-success"
+                            }}
+                                <i class="fa fa-md fa-edit"></i>
+                                Редактировать
+                            {{/afModal}}
+                        </td>
+                    {{/if}}
                 </tr>
                 {{/each}}
             </tbody>
         </table>
     </div>
-
-    {{> schedulesForm }}
+    {{#if  isInRole 'redactor'}}
+        {{> schedulesForm }}
+    {{/if}}
 </template>
 <template name="schedulesFormError">
     <div class="container pull-left">

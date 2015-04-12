@@ -1,7 +1,14 @@
 
 if (Meteor.isClient) {
 
-    SimpleSchema.debug
+    Meteor.subscribe("schedules");
+    Meteor.subscribe("rooms");
+    Meteor.subscribe("lecturers");
+    Meteor.subscribe("subjects");
+    Meteor.subscribe("departaments");
+    Meteor.subscribe("groups");
+    Meteor.subscribe("chairs");
+    Meteor.subscribe("specialities");
 
     Template.navItems.helpers({
       activeIfTemplateIs: function (template) {
@@ -137,6 +144,14 @@ if (Meteor.isClient) {
         }
     })
 
+    Template.userBadge.events({
+        'click .logout': function(event) {
+            event.preventDefault()
+            Meteor.logout()
+            Router.go('home')
+        }
+    })
+
     AutoForm.hooks({
         insertScheduleForm: {
             formToDoc: function(doc){
@@ -170,6 +185,30 @@ if (Meteor.isClient) {
 
 if (Meteor.isServer) {
 
+    Meteor.publish("schedules", function () {
+      return schedules.find();
+    });
+    Meteor.publish("rooms", function () {
+      return rooms.find();
+    });
+    Meteor.publish("lecturers", function () {
+      return lecturers.find();
+    });
+    Meteor.publish("chairs", function () {
+      return chairs.find();
+    });
+    Meteor.publish("departaments", function () {
+      return departaments.find();
+    });
+    Meteor.publish("subjects", function () {
+      return subjects.find();
+    });
+    Meteor.publish("specialities", function () {
+      return specialities.find();
+    });
+    Meteor.publish("groups", function () {
+      return groups.find();
+    });
   Meteor.startup(function () {
   })
 
