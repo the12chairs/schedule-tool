@@ -196,14 +196,24 @@ if (Meteor.isClient) {
 
     AutoForm.hooks({
         insertScheduleForm: {
+
             formToDoc: function(doc){
-                doc.subject = subjects.find({_id: doc.subject.title}).fetch()[0]
-                doc.room = rooms.find({_id: doc.room.building}).fetch()[0]
-                doc.lecturer = lecturers.find({_id: doc.lecturer.fio}).fetch()[0]
-                doc.group = groups.find({_id: doc.group.name}).fetch()[0]
+                if(doc.subject != null) {
+                    doc.subject = subjects.find({_id: doc.subject.title}).fetch()[0]
+                }
+                if(doc.room != null) {
+                    doc.room = rooms.find({_id: doc.room.building}).fetch()[0]
+                }
+                if(doc.lecturer != null) {
+                    doc.lecturer = lecturers.find({_id: doc.lecturer.fio}).fetch()[0]
+                }
+                if(doc.group != null) {
+                    doc.group = groups.find({_id: doc.group.name}).fetch()[0]
+                }
 
                 return doc
             }
+
         },
         updateScheduleForm: {
 
