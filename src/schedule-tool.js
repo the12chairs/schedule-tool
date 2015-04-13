@@ -62,7 +62,7 @@ if (Meteor.isClient) {
             if(group != '' && lecturer != '') {
                 var s = schedules.find({'group.name': group, 'lecturer.fio': lecturer})
             } else if(group != '' && lecturer == '') {
-                var s = schedules.find({'group.name': group}).fetch()
+                var s = schedules.find({'group.name': group})
             } else if(lecturer != '' && group == '') {
                 var s = schedules.find({'lecturer.fio': lecturer})
             } else {
@@ -247,7 +247,7 @@ if (Meteor.isClient) {
 if (Meteor.isServer) {
 
     Meteor.publish("schedules", function () {
-      return schedules.find();
+        return schedules.find();
     });
     Meteor.publish("rooms", function () {
       return rooms.find();
@@ -270,7 +270,22 @@ if (Meteor.isServer) {
     Meteor.publish("groups", function () {
       return groups.find();
     });
-  Meteor.startup(function () {
-  })
+
+    if (Meteor.users.find().count() === 0 ) {
+        var usr = Accounts.createUser({
+            username: 'redactor',
+            password: 'redactor'
+        })
+
+        var usr2 = Accounts.createUser({
+            username: 'viewer',
+            password: 'viewer'
+        })
+        Roles.addUsersToRoles(usr, ['redactor'])
+        Roles.addUsersToRoles(usr2, ['viewer'])
+    }
+
+    Meteor.startup(function () {
+    })
 
 }
