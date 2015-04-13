@@ -206,6 +206,7 @@ if (Meteor.isClient) {
             }
         },
         updateScheduleForm: {
+
             formToDoc: function(doc){
                 doc.subject = subjects.find({_id: doc.subject}).fetch()[0]
                 doc.room = rooms.find({_id: doc.room}).fetch()[0]
