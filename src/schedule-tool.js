@@ -236,6 +236,33 @@ if (Meteor.isClient) {
             Session.set('lecturer', '');
 
             return false;
+        },
+        'mouseover #updateScheduleForm': function(event, template) {
+
+            var subject = this.doc.subject.title;
+            var room = this.doc.room.number +', '+ this.doc.room.building;
+            var lecturer = this.doc.lecturer.fio;
+            var group = this.doc.group.name;
+
+
+            if($('select[name="subject"]').val()=='') {
+                $('select[name="subject"] option:contains("'+subject+'")').prop('selected', true);
+            }
+            if($('select[name="room"]').val()=='') {
+                $('select[name="room"] option:contains("'+room+'")').prop('selected', true);
+            }
+            if($('select[name="lecturer"]').val()=='') {
+                $('select[name="lecturer"] option:contains("'+lecturer+'")').prop('selected', true);
+            }
+            if($('select[name="group"]').val()=='') {
+                $('select[name="group"] option:contains("'+group+'")').prop('selected', true);
+            }
+        },
+        'hidden.bs.modal': function(event, template) {
+            $('select[name="subject"]').val('')
+            $('select[name="room"]').val('')
+            $('select[name="lecturer"]').val('')
+            $('select[name="group"]').val('')
         }
     });
 
