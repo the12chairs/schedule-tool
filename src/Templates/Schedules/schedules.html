@@ -21,6 +21,8 @@
         {{#autoForm collection="schedules" id="insertScheduleForm" type="insert"}}
             <legend>Добавить расписание:</legend>
             <fieldset>
+                {{> afQuickField name='weeknumber' }}
+                {{> afQuickField name='weekday' }}
                 {{> afQuickField name='pair' }}
                 {{> afQuickField name='subject.title' options=subjectsSh label="Предмет" }}
                 {{> afQuickField name='room.building' options=roomsSh label="Аудитория"}}
@@ -44,6 +46,8 @@
         <table class="table table-striped table-bordered table-hover" id='groups'>
             <thead>
                 <tr>
+                    <th>Номер недели</th>
+                    <th>День недели</th>
                     <th>Номер пары</th>
                     <th>Предмет</th>
                     <th>Аудитория</th>
@@ -57,6 +61,12 @@
             <tbody>
                 {{#each schedule}}
                 <tr>
+                    <td>
+                        {{weeknumber}}
+                    </td>
+                    <td>
+                        {{weekday}}
+                    </td>
                     <td>
                         {{pair}}
                     </td>
@@ -87,7 +97,7 @@
                                 collection="schedules"
                                 formId="updateScheduleForm"
                                 operation="update"
-                                labels="pair, subject.title, room.building, lecturer.fio, group.name"
+                                labels="pair, subject, room, lecturer, group"
                                 doc=_id
                                 buttonContent="Сохранить"
                                 title="Редактировать запись"

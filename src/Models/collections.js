@@ -120,10 +120,10 @@ Schemas.Room = new SimpleSchema({
         label: "Корпус",
         autoform: {
             options: [
-            {'label': 'Главный', value: 'Главный'},
-            {'label': 'K2', value: 'K2'},
-            {'label': 'К3', value: 'К3'},
-            {'label': 'Физ', value: 'Физкультура'},
+                {'label': 'Главный', value: 'Главный'},
+                {'label': 'K2', value: 'K2'},
+                {'label': 'К3', value: 'К3'},
+                {'label': 'Физ', value: 'Физкультура'}
             ]
         }
     }
@@ -138,6 +138,30 @@ Schemas.Subject = new SimpleSchema({
 })
 
 Schemas.Schedule = new SimpleSchema({
+    weeknumber: {
+        type: String,
+        label: "Номер недели",
+        autoform: {
+            options: [
+                {'label': 'Первая', value: 'Первая'},
+                {'label': 'Вторая', value: 'Вторая'}
+            ]
+        }
+    },
+    weekday: {
+        type: String,
+        label: "День недели",
+        autoform: {
+            options: [
+                {'label': 'Понедельник', value: 'Понедельник'},
+                {'label': 'Вторник', value: 'Вторник'},
+                {'label': 'Среда', value: 'Среда'},
+                {'label': 'Четверг', value: 'Четверг'},
+                {'label': 'Пятница', value: 'Пятница'},
+                {'label': 'Суббота', value: 'Суббота'}
+            ]
+        }
+    },
     pair: {
         type: Number,
         label: "Номер пары",
