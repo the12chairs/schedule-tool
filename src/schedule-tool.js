@@ -424,10 +424,10 @@ if (Meteor.isServer) {
 
             worksheet.writeToCell(monRow, 1, 'Понедельник');
             worksheet.writeToCell(tueRow-1, 1, 'Вторник');
-            worksheet.writeToCell(wedRow-1, 1, 'Среда');
-            worksheet.writeToCell(thuRow-1, 1, 'Четверг');
-            worksheet.writeToCell(friRow-1, 1, 'Пятница');
-            worksheet.writeToCell(satRow-1, 1, 'Суббота');
+            worksheet.writeToCell(wedRow-1-1, 1, 'Среда');
+            worksheet.writeToCell(thuRow-1-1-1, 1, 'Четверг');
+            worksheet.writeToCell(friRow-1-1-1-1, 1, 'Пятница');
+            worksheet.writeToCell(satRow-1-1-1-1-1, 1, 'Суббота');
 
             // Setting time
 
@@ -445,33 +445,33 @@ if (Meteor.isServer) {
             worksheet.writeToCell(tueRow+8, 0, '16:50');
             worksheet.writeToCell(tueRow+10, 0, '18:00');
 
-            worksheet.writeToCell(wedRow, 0, '8:30');
-            worksheet.writeToCell(wedRow+2, 0, '10:15');
-            worksheet.writeToCell(wedRow+4, 0, '12:30');
-            worksheet.writeToCell(wedRow+6, 0, '14:15');
-            worksheet.writeToCell(wedRow+8, 0, '16:50');
-            worksheet.writeToCell(wedRow+10, 0, '18:00');
+            worksheet.writeToCell(wedRow-1, 0, '8:30');
+            worksheet.writeToCell(wedRow+2-1, 0, '10:15');
+            worksheet.writeToCell(wedRow+4-1, 0, '12:30');
+            worksheet.writeToCell(wedRow+6-1, 0, '14:15');
+            worksheet.writeToCell(wedRow+8-1, 0, '16:50');
+            worksheet.writeToCell(wedRow+10-1, 0, '18:00');
 
-            worksheet.writeToCell(thuRow, 0, '8:30');
-            worksheet.writeToCell(thuRow+2, 0, '10:15');
-            worksheet.writeToCell(thuRow+4, 0, '12:30');
-            worksheet.writeToCell(thuRow+6, 0, '14:15');
-            worksheet.writeToCell(thuRow+8, 0, '16:50');
-            worksheet.writeToCell(thuRow+10, 0, '18:00');
+            worksheet.writeToCell(thuRow-1-1, 0, '8:30');
+            worksheet.writeToCell(thuRow+2-1-1, 0, '10:15');
+            worksheet.writeToCell(thuRow+4-1-1, 0, '12:30');
+            worksheet.writeToCell(thuRow+6-1-1, 0, '14:15');
+            worksheet.writeToCell(thuRow+8-1-1, 0, '16:50');
+            worksheet.writeToCell(thuRow+10-1-1, 0, '18:00');
 
-            worksheet.writeToCell(friRow, 0, '8:30');
-            worksheet.writeToCell(friRow+2, 0, '10:15');
-            worksheet.writeToCell(friRow+4, 0, '12:30');
-            worksheet.writeToCell(friRow+6, 0, '14:15');
-            worksheet.writeToCell(friRow+8, 0, '16:50');
-            worksheet.writeToCell(friRow+10, 0, '18:00');
+            worksheet.writeToCell(friRow-1-2, 0, '8:30');
+            worksheet.writeToCell(friRow+2-1-2, 0, '10:15');
+            worksheet.writeToCell(friRow+4-1-2, 0, '12:30');
+            worksheet.writeToCell(friRow+6-1-2, 0, '14:15');
+            worksheet.writeToCell(friRow+8-1-2, 0, '16:50');
+            worksheet.writeToCell(friRow+10-1-2, 0, '18:00');
 
-            worksheet.writeToCell(satRow, 0, '8:30');
-            worksheet.writeToCell(satRow+2, 0, '10:15');
-            worksheet.writeToCell(satRow+4, 0, '12:30');
-            worksheet.writeToCell(satRow+6, 0, '14:15');
-            worksheet.writeToCell(satRow+8, 0, '16:50');
-            worksheet.writeToCell(satRow+10, 0, '18:00');
+            worksheet.writeToCell(satRow-1-3, 0, '8:30');
+            worksheet.writeToCell(satRow+2-1-3, 0, '10:15');
+            worksheet.writeToCell(satRow+4-1-3, 0, '12:30');
+            worksheet.writeToCell(satRow+6-1-3, 0, '14:15');
+            worksheet.writeToCell(satRow+8-1-3, 0, '16:50');
+            worksheet.writeToCell(satRow+10-1-3, 0, '18:00');
 
 
             sched.forEach(function(s){
@@ -495,36 +495,36 @@ if (Meteor.isServer) {
                 if(typeof(s.wed) != 'undefined') {
                     //worksheet.writeToCell(wedRow, 0, s.wed.pair);
                     if(s.wed.num == "Первая") {
-                        worksheet.writeToCell(wedRow+s.wed.pair*2-1-1, 1, s.wed.body);
+                        worksheet.writeToCell(wedRow+s.wed.pair*2-1-1-1, 1, s.wed.body);
                     } else {
-                        worksheet.writeToCell(wedRow+s.wed.pair*2-1, 1, s.wed.body);
+                        worksheet.writeToCell(wedRow+s.wed.pair*2-1-1, 1, s.wed.body);
                     }
                     //wedRow++;
                 }
                 if(typeof(s.thu) != 'undefined') {
                     //worksheet.writeToCell(thuRow, 0, s.thu.pair);
                     if(s.thu.num == "Первая") {
-                        worksheet.writeToCell(thuRow+s.thu.pair*2-1-1, 1, s.thu.body);
+                        worksheet.writeToCell(thuRow+s.thu.pair*2-1-1-1-1, 1, s.thu.body);
                     } else {
-                        worksheet.writeToCell(thuRow+s.thu.pair*2-1, 1, s.thu.body);
+                        worksheet.writeToCell(thuRow+s.thu.pair*2-1-1-1, 1, s.thu.body);
                     }
                     //thuRow++;
                 }
                 if(typeof(s.fri) != 'undefined') {
                     //worksheet.writeToCell(friRow, 0, s.fri.pair);
                     if(s.fri.num == "Первая") {
-                        worksheet.writeToCell(friRow+s.fri.pair*2-1-1, 1, s.fri.body);
+                        worksheet.writeToCell(friRow+s.fri.pair*2-1-1-1-1-1, 1, s.fri.body);
                     } else {
-                        worksheet.writeToCell(friRow+s.fri.pair*2-1, 1, s.fri.body);
+                        worksheet.writeToCell(friRow+s.fri.pair*2-1-1-1-1, 1, s.fri.body);
                     }
                     //friRow++;
                 }
                 if(typeof(s.sat) != 'undefined') {
                     //worksheet.writeToCell(satRow, 0, s.sat.pair);
                     if(s.fri.num == "Первая") {
-                        worksheet.writeToCell(satRow+s.sat.pair*2-1-1, 1, s.sat.body);
+                        worksheet.writeToCell(satRow+s.sat.pair*2-1-1-1-1-1-1, 1, s.sat.body);
                     } else {
-                        worksheet.writeToCell(satRow+s.sat.pair*2-1, 1, s.sat.body);
+                        worksheet.writeToCell(satRow+s.sat.pair*2-1-1-1-1-1, 1, s.sat.body);
                     }
                     //satRow++;
                 }
