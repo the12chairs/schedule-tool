@@ -432,46 +432,82 @@ if (Meteor.isServer) {
             // Setting time
 
             worksheet.writeToCell(monRow+1, 0, '8:30');
+            worksheet.mergeCells(monRow+1, 0,monRow+2, 0);
             worksheet.writeToCell(monRow+3, 0, '10:15');
+            worksheet.mergeCells(monRow+3, 0,monRow+4, 0);
             worksheet.writeToCell(monRow+5, 0, '12:30');
+            worksheet.mergeCells(monRow+5, 0,monRow+6, 0);
             worksheet.writeToCell(monRow+7, 0, '14:15');
+            worksheet.mergeCells(monRow+7, 0,monRow+8, 0);
             worksheet.writeToCell(monRow+9, 0, '16:50');
+            worksheet.mergeCells(monRow+9, 0,monRow+10, 0);
             worksheet.writeToCell(monRow+11, 0, '18:00');
+            worksheet.mergeCells(monRow+11, 0,monRow+12, 0);
 
             worksheet.writeToCell(tueRow, 0, '8:30');
+            worksheet.mergeCells(tueRow, 0, tueRow+1, 0);
             worksheet.writeToCell(tueRow+2, 0, '10:15');
+            worksheet.mergeCells(tueRow+2, 0, tueRow+3, 0);
             worksheet.writeToCell(tueRow+4, 0, '12:30');
+            worksheet.mergeCells(tueRow+4, 0, tueRow+5, 0);
             worksheet.writeToCell(tueRow+6, 0, '14:15');
+            worksheet.mergeCells(tueRow+6, 0, tueRow+7, 0);
             worksheet.writeToCell(tueRow+8, 0, '16:50');
+            worksheet.mergeCells(tueRow+8, 0, tueRow+9, 0);
             worksheet.writeToCell(tueRow+10, 0, '18:00');
+            worksheet.mergeCells(tueRow+10, 0, tueRow+11, 0);
 
             worksheet.writeToCell(wedRow-1, 0, '8:30');
+            worksheet.mergeCells(wedRow-1, 0, wedRow, 0);
             worksheet.writeToCell(wedRow+2-1, 0, '10:15');
+            worksheet.mergeCells(wedRow+2-1, 0, wedRow+2, 0);
             worksheet.writeToCell(wedRow+4-1, 0, '12:30');
+            worksheet.mergeCells(wedRow+4-1, 0, wedRow+4, 0);
             worksheet.writeToCell(wedRow+6-1, 0, '14:15');
+            worksheet.mergeCells(wedRow+6-1, 0, wedRow+6, 0);
             worksheet.writeToCell(wedRow+8-1, 0, '16:50');
+            worksheet.mergeCells(wedRow+8-1, 0, wedRow+8, 0);
             worksheet.writeToCell(wedRow+10-1, 0, '18:00');
+            worksheet.mergeCells(wedRow+10-1, 0, wedRow+10, 0);
 
             worksheet.writeToCell(thuRow-1-1, 0, '8:30');
+            worksheet.mergeCells(thuRow-1-1, 0, thuRow-1, 0);
             worksheet.writeToCell(thuRow+2-1-1, 0, '10:15');
+            worksheet.mergeCells(thuRow+2-1-1, 0, thuRow+2-1, 0);
             worksheet.writeToCell(thuRow+4-1-1, 0, '12:30');
+            worksheet.mergeCells(thuRow+4-1-1, 0, thuRow+4-1, 0);
             worksheet.writeToCell(thuRow+6-1-1, 0, '14:15');
+            worksheet.mergeCells(thuRow+6-1-1, 0, thuRow+6-1, 0);
             worksheet.writeToCell(thuRow+8-1-1, 0, '16:50');
+            worksheet.mergeCells(thuRow+8-1-1, 0, thuRow+8-1, 0);
             worksheet.writeToCell(thuRow+10-1-1, 0, '18:00');
+            worksheet.mergeCells(thuRow+10-1-1, 0, thuRow+10-1, 0);
 
             worksheet.writeToCell(friRow-1-2, 0, '8:30');
+            worksheet.mergeCells(friRow-1-2, 0, friRow-2, 0);
             worksheet.writeToCell(friRow+2-1-2, 0, '10:15');
+            worksheet.mergeCells(friRow+2-1-2, 0, friRow+2-2, 0);
             worksheet.writeToCell(friRow+4-1-2, 0, '12:30');
+            worksheet.mergeCells(friRow+4-1-2, 0, friRow+4-2, 0);
             worksheet.writeToCell(friRow+6-1-2, 0, '14:15');
+            worksheet.mergeCells(friRow+6-1-2, 0, friRow+6-2, 0);
             worksheet.writeToCell(friRow+8-1-2, 0, '16:50');
+            worksheet.mergeCells(friRow+8-1-2, 0, friRow+8-2, 0);
             worksheet.writeToCell(friRow+10-1-2, 0, '18:00');
+            worksheet.mergeCells(friRow+10-1-2, 0, friRow+10-2, 0);
 
             worksheet.writeToCell(satRow-1-3, 0, '8:30');
+            worksheet.mergeCells(satRow-1-3, 0, satRow-3, 0);
             worksheet.writeToCell(satRow+2-1-3, 0, '10:15');
+            worksheet.mergeCells(satRow+2-1-3, 0, satRow+2-3, 0);
             worksheet.writeToCell(satRow+4-1-3, 0, '12:30');
+            worksheet.mergeCells(satRow+4-1-3, 0, satRow+4-3, 0);
             worksheet.writeToCell(satRow+6-1-3, 0, '14:15');
+            worksheet.mergeCells(satRow+6-1-3, 0, satRow+6-3, 0);
             worksheet.writeToCell(satRow+8-1-3, 0, '16:50');
+            worksheet.mergeCells(satRow+8-1-3, 0, satRow+8-3, 0);
             worksheet.writeToCell(satRow+10-1-3, 0, '18:00');
+            worksheet.mergeCells(satRow+10-1-3, 0, satRow+10-3, 0);
 
 
             sched.forEach(function(s){
